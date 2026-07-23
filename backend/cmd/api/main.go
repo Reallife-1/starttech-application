@@ -53,6 +53,10 @@ func main() {
 		log.Fatalf("could not load config: %v", err)
 	}
 
+        if envURI := os.Getenv("MONGO_URI"); envURI != "" {
+		cfg.MongoURI = envURI
+	}
+
 	// --- Logger ---
 	// This must be initialized before any other component that might log.
 	logger.InitLogger(cfg)
